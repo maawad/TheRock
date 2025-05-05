@@ -59,6 +59,14 @@ def run(args):
             cwd=THEROCK_DIR,
         )
 
+        # Pin rocBLAS submodule to before hipBLAS 3.0
+        if "rocBLAS" in projects:
+            rocm_path = get_submodule_path("rocBLAS")
+            exec(
+                ["git", "checkout", "c0b79e86e6c78e29d97214a1198a75de2f583a3b"],
+                cwd=THEROCK_DIR / rocm_path,
+            )
+
     # Because we allow local patches, if a submodule is in a patched state,
     # we manually set it to skip-worktree since recording the commit is
     # then meaningless. Here on each fetch, we reset the flag so that if
