@@ -61,10 +61,10 @@ def run(args):
 
         # Pin rocBLAS submodule to before hipBLAS 3.0
         if "rocBLAS" in projects:
-            rocm_path = get_submodule_path("rocBLAS")
+            rocblas_path = get_submodule_path("rocBLAS")
             exec(
                 ["git", "checkout", "c0b79e86e6c78e29d97214a1198a75de2f583a3b"],
-                cwd=THEROCK_DIR / rocm_path,
+                cwd=THEROCK_DIR / rocblas_path,
             )
 
     # Because we allow local patches, if a submodule is in a patched state,
